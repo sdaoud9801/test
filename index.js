@@ -5,7 +5,7 @@ const fs = require("fs");
 const google = require("./upload-file.js")
 const multerStorage = multer.memoryStorage()
 const upload = multer({ storage: multerStorage })
-
+const port = process.env.PORT || 3001;
 
 
 app.use(express.json());
@@ -21,8 +21,8 @@ app.post("/",upload.single('file'),async (req,res)=>{
     await google.uploadFromMemory(req.file.buffer);
 })
 
-app.listen(3000,()=>{
-    console.log("Application listening on port 3000");
+app.listen(port,()=>{
+    console.log("Application listening on port ${port}");
 })
 
 
